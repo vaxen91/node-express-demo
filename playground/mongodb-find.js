@@ -9,14 +9,8 @@ MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, 
 
     const db = client.db('TodoApp');
 
-    db.collection('Todos').insertOne({
-        text: 'Insert one',
-        completed: false
-    }, (err, result) => {
-        if (err) {
-            return console.log('unable to insert todo document', err);
-        }
-        console.log(JSON.stringify(result.ops, undefined, 2));
+    db.collection('Todos').find().toArray().then((docs)=>{
+        console.log(JSON.stringify(docs,undefined,2));
     });
 
     client.close();
