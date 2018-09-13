@@ -1,26 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const {mongoose} = require('./db/mongoose');
 const {User} = require('./models/user');
 const {Todo} = require('./models/todo');
 
 let app = express();
-app.use(bodyParser.json);
+app.use(express.json());
 
 app.post('/todos', (req, res) => {
-    console.log('ddddd');
     console.log(req.body);
-});
-
-app.get('/', (req, res) => {
-    res.send({
-        name: 'Matt',
-        likes: [
-            'Biking',
-            'Music Production'
-        ]
-    })
+    res.send(req.body);
 });
 
 app.listen(3000, () => {
